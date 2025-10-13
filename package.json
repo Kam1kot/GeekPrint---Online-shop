@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "mysql2": "^3.14.3",
+    "puppeteer": "^24.15.0",
+    "puppeteer-core": "^24.15.0"
+  }
+}
