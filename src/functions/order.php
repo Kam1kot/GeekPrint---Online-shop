@@ -1,6 +1,6 @@
 <?php
-$token = "8246451617:AAGupke9FPuXtTPvnaG2d63-bx8NbBtBW6M";
-$chat_id = "823911397";
+$token = "...";
+$chat_id = "...";
 
 // order.php
 header('Content-Type: application/json; charset=utf-8');
