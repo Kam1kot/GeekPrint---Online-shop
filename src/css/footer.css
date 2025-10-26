@@ -1,0 +1,15 @@
+footer {
+  flex-shrink: 0;
+}
+
+.footer-row-info a {
+  color: gray !important;
+  text-decoration: none !important;
+  transition: ease all 0.2s;
+}
+
+.footer-row-info a:hover {
+  margin: 0 3px;
+  color: black;
+  font-weight: bolder;
+}

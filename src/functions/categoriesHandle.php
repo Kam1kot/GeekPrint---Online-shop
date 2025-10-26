@@ -1,4 +1,5 @@
 <?php
+
 // Создание категорий
 if (isset($_POST['add_category'])) {
     if (empty($_POST['category_name'])) {

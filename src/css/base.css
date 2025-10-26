@@ -1,0 +1,66 @@
+html,
+body {
+  height: 100%;
+}
+
+html {
+  width: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #faf4ef;
+  color: #3a3a3a;
+}
+
+#about-us,
+#contacts,
+#reviews,
+#new {
+  scroll-margin-top: 75px;
+}
+
+img {
+  pointer-events: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+main {
+  overflow: hidden;
+  flex: 1 0 auto;
+}
+
+main section,
+footer,
+.navbar,
+.hero {
+  width: 100%;
+  max-width: 100%;
+}
+.about-us-container {
+  justify-content: space-between;
+  display: flex;
+}
+
+.main-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: #ffe6cc;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.alert {
+  padding: 10px;
+  margin-bottom: 0 !important;
+  --bs-alert-padding-x: 0 !important;
+  --bs-alert-padding-y: 0 !important;
+}

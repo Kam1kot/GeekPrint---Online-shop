@@ -1,0 +1,129 @@
+.product-card {
+  position: relative;
+  overflow: visible;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  height: 100%;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid rgba(255, 166, 0, 0.5) !important; /* Легкая рамка при наведении */
+}
+
+.product-card .small-img {
+  width: 255px !important;
+  height: auto !important;
+  max-height: 200px !important;
+  object-fit: contain; /* Сохраняет пропорции и помещает целиком */
+  margin: 0 auto 0.5rem;
+  display: block;
+}
+
+.product-card .titile-name {
+  color: black !important;
+}
+
+.product-card img {
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+
+.product-card .product-actions {
+  gap: 5%;
+}
+
+.product-card > a.stretched-link {
+  position: static; /* Снимаем растягивание по всей карточке */
+}
+.product-card .product-actions button,
+.product-card .product-actions form {
+  z-index: 3; /* Кнопки должны быть кликабельны поверх всего */
+}
+
+.product-card .price {
+  color: #3a3a3a; /* Основной цвет текста */
+}
+
+.product-card:hover .price {
+  color: #ff8a00; /* Цвет акцента при наведении */
+}
+
+.card-btn {
+  width: max-content;
+  height: auto;
+  background-color: orange;
+  border: none;
+}
+
+.card-btn:hover {
+  background-color: rgba(255, 166, 0, 0.8);
+}
+
+.buy-form {
+  width: max-content;
+}
+
+.delete-cover-btn {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translateY(-50%);
+  color: red;
+  border: 1px solid red;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  opacity: 70%;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-danger-2 {
+  background-color: rgb(211, 159, 159);
+}
+
+.btn-danger-2:hover {
+  background-color: rgb(172, 129, 129);
+}
+
+/* Бейдж "Новинка" */
+.new-badge {
+  position: absolute;
+  top: 15px; /* Немного ниже от края */
+  right: 15px; /* Немного левее от края */
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(45deg, #ff6a00, #ff0000);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 8px rgba(255, 69, 0, 0.7);
+  z-index: 10;
+}
+
+.new-badge svg {
+  width: 18px;
+  height: 18px;
+}
+
+.product-card-other {
+  position: relative;
+  overflow: visible;
+  padding: 1rem;
+  padding-bottom: 50px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  height: 100%;
+  transition: transform 0.2s, box-shadow 0.2s;
+}

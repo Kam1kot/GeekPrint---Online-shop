@@ -8,42 +8,15 @@ require_once(ROOT . "templates/head.php");
 require_once(ROOT . "templates/header.php");
 
 $products = R::findAll('products');
-$categories = R::findAll('categories', 'ORDER BY id DESC');
-$reviews = R::findAll('avito_reviews')
-
+$categories = R::findAll('categories');
+$reviews = R::findAll('avito_reviews');
 ?>
-<?php if (!empty($errors) && isset($_POST['submit_product'])): ?>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
-        modal.show();
-    });
-</script>
-<?php endif; ?>
-
-<?php if (!empty($errors) && isset($_POST['edit_product'])): ?>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const modal = new bootstrap.Modal(document.getElementById('editProductModal'));
-        modal.show();
-    });
-</script>
-<?php endif; ?>
-
-<?php if (!empty($errors) && isset($_POST['add_category'])): ?>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const modal = new bootstrap.Modal(document.getElementById('addCategoryModal'));
-        modal.show();
-    });
-</script>
-<?php endif; ?>
     <main>
         <!-- Hero-секция -->
         <section class="hero shadow-sm position-relative mt-5 mb-5">
             <h1>Уют в каждой детали</h1>
             <p class="lead">Индивидуальные 3D-изделия, созданные с душой</p>
-            <a href="<?ROOT?>catalog.php"><button class="main-btn">Смотреть каталог</button></a>
+            <a style="color: black; text-decoration: none;" class="main-btn" href="<?=HOST?>catalog.php">Смотреть каталог</a>
             <img class="shark-image" src="<?ROOT?>src/imgs/shark-header.png" alt="">
         </section>
         <!-- О нас -->
@@ -104,52 +77,16 @@ $reviews = R::findAll('avito_reviews')
         <!-- Категории товаров -->
         <section class="container pt-3 pb-5">
             <h2 class="text-center mb-4">Категории товаров</h2>
-            <div class="d-flex justify-content-center mb-3">
-                <button type="button" class="btn main-btn ms-2" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
-                    Добавить категорию
-                </button>
-                <?php if (isset($_GET['success_category']) && $_GET['success_category'] == 1 && empty($errors)): ?>
-                    <div class='alert alert-success ms-3'>Категория успешно добавлена с ID: <?= htmlspecialchars($_GET['category_id']) ?></div>
-                <?php endif; ?>
-            </div>
-            
-            <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryLabel" aria-hidden="true">
-                <form method="post" enctype="multipart/form-data">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="addCategoryLabel">Добавить категорию</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-                            
-                            <?php if (!empty($errors) && is_array($errors) && isset($_POST['add_category'])): ?>
-                                <?php foreach($errors as $error): ?>
-                                    <div class='alert alert-danger mx-3 mt-2'><?= $error ?></div>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
-
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label class="form-label"><span class="text-warning"><strong>* </strong></span>Название</label>
-                                    <input type="text" name="category_name" class="form-control" placeholder="Название категории" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Изображение категории</label>
-                                    <input type="file" name="cover" class="form-control" id="categoryCoverInput">
-                                    <img id="categoryCoverPreview" src="" 
-                                        style="display:none; max-width:150px; margin-top:10px;" 
-                                        class="img-fluid rounded shadow">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" name="add_category" class="btn btn-primary">Добавить</button>
-                                <input type="hidden" name="add_category" value="1">
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
+            <?php if(is_admin()): ?>
+                <div class="d-flex justify-content-center mb-3">
+                    <button type="button" class="btn main-btn ms-2" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+                        Добавить категорию
+                    </button>
+                    <?php if (isset($_GET['success_category']) && $_GET['success_category'] == 1 && empty($errors)): ?>
+                        <div class='alert alert-success ms-3'>Категория успешно добавлена с ID: <?= htmlspecialchars($_GET['category_id']) ?></div>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
             <div class="row category-container g-4">
                 <?php
                     foreach ($categories as $category) {
@@ -206,134 +143,5 @@ $reviews = R::findAll('avito_reviews')
                 <div class="swiper-button-next"></div>
             </div>
         </section>
-
-        <!-- Модальное окно редактирования -->  
-        <div class="modal fade" 
-            id="editCategoryModal<?= (int)$category['id'] ?>" 
-            tabindex="-1" 
-            aria-labelledby="editCatModalLabel<?= (int)$category['id'] ?>" 
-            aria-hidden="true">
-            <form method="post" enctype="multipart/form-data">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-
-                        <!-- Заголовок -->
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="editCatModalLabel<?= (int)$category['id'] ?>">
-                                Редактирование категории
-                            </h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-
-                        <!-- Тело модалки -->
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label class="form-label">Название</label>
-                                <input class="form-control"
-                                        type="text"
-                                        name="category_name"
-                                        value="<?= htmlspecialchars($category['name']) ?>"
-                                        required>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Изображение</label>
-                                <input class="form-control"
-                                        type="file"
-                                        name="cover"
-                                        id="editCoverInput-<?= (int)$category['id'] ?>">
-                            </div>
-                            <div class="mb-3 cover-preview-wrapper-<?= (int)$category['id'] ?>" style="display: none;">
-                                <p class="mb-1">Превью нового изображения:</p>
-                                <img src="" 
-                                    alt="" 
-                                    id="editCoverPreview-<?= (int)$category['id'] ?>" 
-                                    class="img-fluid rounded shadow" 
-                                    style="max-width: 150px; display: block;">
-                            </div>
-
-                            <?php if(!empty($category['cover_name'])): ?>
-                                <div class="mb-3">
-                                    <div id="cover-container-<?= (int)$category['id'] ?>">
-                                        <p class="mb-1">Текущее изображение:</p>
-                                        <div class="position-relative img-div">
-                                        <img src="src/data/category_covers/<?= htmlspecialchars($category->cover_name) ?>" 
-                                            alt="" 
-                                            class="img-fluid" 
-                                            style="max-width: 150px; display: block; margin-bottom: 10px;">
-                                        <button type="button" 
-                                                class="d-flex align-items-center justify-content-center svg-sym p-3 btn-sm delete-cover-btn position-absolute top-50 start-50 translate-middle" 
-                                                data-category-id="<?= (int)$category['id'] ?>">
-                                                X
-                                        </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            <? endif; ?>
-                        </div>
-
-                        <!-- Кнопки -->
-                        <div class="modal-footer">
-                            <input type="hidden" name="id" value="<?= (int)$category['id'] ?>">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                            <button type="submit" name="edit_product" class="btn btn-primary">
-                                Сохранить изменения
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
-            </form>
-        </div>
     </main>
-    <script>
-    document.addEventListener('click', function(event) {
-        // Проверяем, является ли кликнутый элемент нашей кнопкой
-        if (event.target.classList.contains('delete-cover-btn')) {
-            const button = event.target;
-            const productId = button.getAttribute('data-product-id');
-
-            const formData = new FormData();
-            formData.append('action', 'delete_cover');
-            formData.append('id', productId);
-
-            fetch('', { // Пустая строка означает, что запрос будет отправлен на текущий URL
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Успех: скрываем блок с изображением
-                    const container = document.getElementById(`cover-container-${productId}`);
-                    if (container) {
-                        container.style.display = 'none';
-                    }
-                }
-            })
-        }
-    });
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const input = document.getElementById("categoryCoverInput");
-            const preview = document.getElementById("categoryCoverPreview");
-
-            if (input && preview) {
-                input.addEventListener("change", function () {
-                    const file = this.files[0];
-                    if (file && file.type.startsWith("image/")) {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            preview.src = e.target.result;
-                            preview.style.display = "block";
-                        };
-                        reader.readAsDataURL(file);
-                    } else {
-                        preview.src = "";
-                        preview.style.display = "none";
-                    }
-                });
-            }
-        });
-    </script>
 <?require_once(ROOT . "templates/footer.php")?>

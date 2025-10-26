@@ -3,6 +3,7 @@ require(ROOT . "config.php");
 require(ROOT . "db.php");
 require(ROOT . "src/functions/all.php");
 
+
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $category = R::load('categories', $_GET['id']);
 

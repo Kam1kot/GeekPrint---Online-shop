@@ -1,0 +1,43 @@
+        <div id="otherProductsCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <?php foreach (array_chunk($otherProducts, 3) as $index => $productChunk): ?>
+                    <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+                        <div class="row justify-content-center g-4">
+                            <?php foreach ($productChunk as $prd): ?>
+                                <?php
+                                $prdCategoryName = $categoriesById[$prd->category_id] ?? 'Без категории';
+                                $prdTitle = htmlspecialchars($prd->title);
+                                $prdCover = htmlspecialchars($prd->cover_name);
+                                ?>
+                                <div class="col-12 col-md-4 col-lg-4">
+                                    <div class="card product-card shadow-sm border-0 h-100 rounded-4 p-0 overflow-hidden">
+                                        <a href="product.php?id=<?= (int)$prd->id ?>" class="text-decoration-none">
+                                            <img 
+                                                src="<?= HOST ?>src/data/product_covers/<?= $prdCover ?>" 
+                                                class="small-img-carousel card-img-top img-fluid" 
+                                                alt="<?= $prdTitle ?>"
+                                                style="max-height: 200px; object-fit: cover;"
+                                            >
+                                            <div class="card-body text-center d-flex flex-column">
+                                                <h5 class="card-title titile-name fs-5 fw-semibold mb-1"><?= $prdTitle ?></h5>
+                                                <h6 class="text-muted small mb-2 text-primary"><?= $prdCategoryName ?></h6>
+                                                <p class="card-text text-dark fs-5 fw-bold mt-auto"><?= number_format((float)$prd->price, 2, '.', '') ?> ₽</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#otherProductsCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#otherProductsCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>

@@ -1,0 +1,159 @@
+/* === Стили для страницы Входа (login.php) === */
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 30px;
+  background: var(--color-white);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+.login-container h1 {
+  text-align: center;
+  color: var(--color-orange);
+}
+.login-container form div {
+  margin-bottom: 15px;
+}
+.login-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-sizing: border-box; /* Важно! */
+}
+.admin-panel {
+  padding: 1.5rem;
+}
+.admin-panel h1 {
+  width: 100%;
+  margin: 0.75rem 0;
+}
+.admin-container {
+  display: flex;
+}
+.sidebar {
+  width: 250px;
+  height: 100% !important;
+  background-color: var(--color-text);
+  color: black;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.sidebar-header {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #444;
+}
+.sidebar-header h3 {
+  margin: 0;
+  color: black;
+  font-size: 24px;
+}
+
+.sidebar-menu {
+  list-style-type: none;
+  padding: 20px;
+  margin: 0;
+  flex-grow: 1;
+}
+.sidebar-menu li a {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  color: black;
+  text-decoration: none;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Иконки в меню */
+.sidebar-menu li a i {
+  width: 30px; /* Фиксированная ширина для иконки */
+  font-size: 16px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* Активный пункт / Наведение */
+.sidebar-menu li.active a,
+.sidebar-menu li a:hover {
+  background-color: orange; /* Оранжевый фон */
+  color: black; /* Белый текст */
+}
+
+/* Подвал сайдбара (Выход) */
+.sidebar-footer {
+  padding: 20px;
+  border-top: 1px solid #444; /* Разделитель */
+}
+.sidebar-footer a {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  color: black;
+  text-decoration: none;
+  border-radius: 6px;
+}
+.sidebar-footer a:hover {
+  background-color: #555; /* Слегка подсветим при наведении */
+}
+.sidebar-footer a i {
+  width: 30px;
+  font-size: 16px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.admin-card-img {
+  width: 6.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid black;
+  height: auto;
+  object-fit: contain;
+}
+.admin-panel .add-product {
+  width: 100%;
+}
+
+.admin-product-nav {
+  width: 100%;
+  height: auto;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.admin-product-nav .name-search {
+  max-width: 60%;
+  min-width: 60%;
+  height: 100%;
+}
+.admin-product-nav .cat-filter {
+  max-width: 30%;
+  min-width: 30%;
+  min-height: 100%;
+}
+.admin-product-nav .cat-filter select {
+  height: 100%;
+}
+.admin-product-nav .actions {
+  max-width: 20%;
+  min-height: 100%;
+}
+.admin-panel .card {
+  max-height: 40rem;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
