@@ -12,117 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const deliveryBlock = document.getElementById("deliveryBlock");
   const cartModalEl = document.getElementById("cartModal");
 
-  // === ЛОГИКА КАРТЫ (Leaflet.js) ===
-  let map, marker;
-  let isMapInitialized = false;
-
-  function initMap() {
-    if (isMapInitialized) return;
-
-    map = L.map("deliveryMap").setView([55.751574, 37.573856], 10);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution:
-        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
-
-    map.on("click", (e) => {
-      updateMapWithCoords(e.latlng);
-    });
-
-    addressInput.addEventListener("input", () => {
-      const query = addressInput.value.trim();
-      if (query.length < 3) return;
-
-      const url = `https://nominatim.openstreetmap.org/search?format=jsonv2&q=${encodeURIComponent(
-        query
-      )}`;
-      fetch(url)
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.length > 0) {
-            const firstResult = data[0];
-            const coords = L.latLng(firstResult.lat, firstResult.lon);
-            updateMapWithCoords(coords);
-          }
-        })
-        .catch((error) =>
-          console.error("Ошибка прямого геокодирования:", error)
-        );
-    });
-
-    isMapInitialized = true;
-  }
-
-  function getAddressFromCoords(coords) {
-    const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${coords.lat}&lon=${coords.lng}`;
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        const fullAddress = data.display_name || "Адрес не найден";
-        addressInput.value = fullAddress;
-      })
-      .catch((error) => {
-        console.error("Ошибка обратного геокодирования:", error);
-        addressInput.value = "";
-      });
-  }
-
-  function updateMapWithCoords(coords) {
-    if (marker) {
-      marker.setLatLng(coords);
-    } else {
-      marker = L.marker(coords, { draggable: true }).addTo(map);
-      marker.on("dragend", (e) => {
-        getAddressFromCoords(e.target.getLatLng());
-      });
-    }
-    map.setView(coords, 14);
-    getAddressFromCoords(coords);
-  }
-
-  // === Инициализация карты при открытии модального окна ===
-  cartModalEl.addEventListener("shown.bs.modal", function () {
-    initMap();
-    map.invalidateSize(); // Заставляем карту пересчитать свои размеры
-  });
-
-  // Чекбокс логика
-  pickupCheck.addEventListener("change", () => {
-    if (pickupCheck.checked) {
-      deliveryBlock.classList.add("d-none");
-    } else {
-      deliveryBlock.classList.remove("d-none");
-    }
-  });
-
-  addressInput.addEventListener("input", () => {
-    const query = addressInput.value.trim();
-    if (query.length < 3) return;
-
-    const url = `https://nominatim.openstreetmap.org/search?format=jsonv2&q=${encodeURIComponent(
-      query
-    )}`;
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.length > 0) {
-          const firstResult = data[0];
-          const coords = L.latLng(firstResult.lat, firstResult.lon);
-          updateMapWithCoords(coords);
-        }
-      })
-      .catch((error) => console.error("Ошибка прямого геокодирования:", error));
-  });
-
-  // Чекбокс логика
-  pickupCheck.addEventListener("change", () => {
-    if (pickupCheck.checked) {
-      document.getElementById("deliveryBlock").classList.add("d-none");
-    } else {
-      document.getElementById("deliveryBlock").classList.remove("d-none");
-    }
-  });
-
   // Helpers
   const CART_KEY = "site_cart_v1";
 
@@ -331,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
   orderForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    if (!pickupCheck.checked && !addressInput.value.trim()) {
+    if (!addressInput.value.trim()) {
       alert("Выберите адрес на карте или введите его вручную.");
       return;
     }
@@ -346,7 +235,6 @@ document.addEventListener("DOMContentLoaded", () => {
       name: orderForm.orderName.value || "",
       phone: orderForm.orderPhone.value || "",
       comment: orderForm.orderComment.value || "",
-      pickup: pickupCheck.checked,
       address: addressInput.value || "",
       cart,
     };

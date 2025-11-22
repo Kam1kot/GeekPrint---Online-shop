@@ -1,6 +1,10 @@
 <?php
-$token = "...";
-$chat_id = "...";
+require __DIR__ . '/../vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+
+$token  = $_ENV['TELEGRAM_BOT_TOKEN'];
+$chatId = $_ENV['TELEGRAM_CHAT_ID'];
 
 // order.php
 header('Content-Type: application/json; charset=utf-8');

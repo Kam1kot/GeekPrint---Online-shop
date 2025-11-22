@@ -164,21 +164,11 @@
                 </div>
                 <div class="col-12">
                     <label for="orderComment" class="form-label">Комментарий</label>
-                    <textarea class="form-control" id="orderComment" name="comment" rows="3" placeholder="Пожелания по заказу"></textarea>
-                </div>
-                <div class="col-12">
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" id="pickupCheck" name="pickup">
-                        <label class="form-check-label" for="pickupCheck">
-                        Самовывоз
-                        </label>
-                    </div>
+                    <textarea class="form-control" id="orderComment" name="comment" rows="3" placeholder="Пожелания по заказу или контакты для связи"></textarea>
                 </div>
                 <div id="deliveryBlock" class="col-12">
                     <label for="orderAddress" class="form-label">Адрес доставки <strong>*</strong></label>
-                    <input type="text" class="form-control mb-3" id="orderAddress" name="address" placeholder="Введите адрес или выберите точку на карте">
-
-                    <div id="deliveryMap" style="width: 100%; height: 300px; border-radius: 10px;"></div>
+                    <input type="text" class="form-control mb-3" id="orderAddress" name="address" placeholder="Введите адрес куда доставить">
                 </div>
                 <div class="alert alert-info" role="alert">
                     <h5 class="alert-heading mb-1">Как происходит оплата товаров:</h5>

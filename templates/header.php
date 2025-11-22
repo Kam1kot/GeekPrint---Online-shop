@@ -17,9 +17,9 @@ function cart_count(): int {
         <nav id="mainNav" class="navbar navbar-expand-lg bg-white shadow-sm px-5 fixed-top"> <!-- fixed-top -->
             <a class="logo navbar-brand text-warning fw-bold" href="/">
                 <div class="navbar-brand">
-                    <img src="<?= HOST ?>src/imgs/logo.png" alt="GeekPrint" width="max-width" height="35" class="logo d-inline-block align-text-top">
+                    <img src="<?= HOST ?>src/imgs/logo.png" alt="GeekPrint33" width="max-width" height="35" class="logo d-inline-block align-text-top">
                 </div>
-                <h1>GeekPrint</h1>
+                <h1>GeekPrint33</h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>

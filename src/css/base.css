@@ -37,7 +37,6 @@ main {
   overflow: hidden;
   flex: 1 0 auto;
 }
-
 main section,
 footer,
 .navbar,
@@ -50,8 +49,8 @@ footer,
   display: flex;
 }
 
-.main-btn {
-  padding: 0.75rem 1.5rem;
+main .main-btn {
+  padding: 1rem 1.5rem;
   background-color: #ffe6cc;
   border: none;
   border-radius: 8px;

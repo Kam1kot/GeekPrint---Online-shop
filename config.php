@@ -1,9 +1,5 @@
 <?php
 // ДБ НАСТРОЙКИ
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'geekprint');
-define('DB_USER', 'root');
-define('DB_PASS', '');
 
 define('MAX_UPLOAD_FILE_SIZE', 10*1024*1024);
 

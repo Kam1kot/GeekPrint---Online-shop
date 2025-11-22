@@ -6,7 +6,7 @@
             <a href="<?=HOST?>catalog.php">Каталог</a>
             <a href="<?=HOST?>index.php#contacts">Контакты</a>
         </div>
-        <p class="text-muted small mb-0">© <?= date('Y') ?> GeekPrint. Все права защищены.</p>
+        <p class="text-muted small mb-0">© <?= date('Y') ?> GeekPrint33. Все права защищены.</p>
     </div>
 </footer>
 <?require('modals.php')?>
@@ -114,9 +114,5 @@
     <script src="<?= HOST ?>src/js/swiper.js"></script>
     <script src="<?= HOST ?>src/js/swiper-otherProducts.js"></script>
     <script src="<?= HOST ?>src/js/categoryPreview.js"></script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""></script>
-    
 </body>
 </html>

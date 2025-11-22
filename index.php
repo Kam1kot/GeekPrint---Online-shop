@@ -1,4 +1,9 @@
 <?
+/* 
+    Заменить картинки
+    Добавить 33 везде
+    Убрать карту
+*/
 require("config.php");
 require("db.php");
 require(ROOT . "src/functions/all.php");
@@ -13,7 +18,7 @@ $reviews = R::findAll('avito_reviews');
 ?>
     <main>
         <!-- Hero-секция -->
-        <section class="hero shadow-sm position-relative mt-5 mb-5">
+        <section class="hero shadow-sm position-relative mt-5 mb-1">
             <h1>Уют в каждой детали</h1>
             <p class="lead">Индивидуальные 3D-изделия, созданные с душой</p>
             <a style="color: black; text-decoration: none;" class="main-btn" href="<?=HOST?>catalog.php">Смотреть каталог</a>
@@ -29,19 +34,19 @@ $reviews = R::findAll('avito_reviews');
                         <hr class="m-auto mb-3" style="width: 80%; height: 3px; background-color: #008DFF; border: none;">
                         <p>Мы специализируемся на 3D-печати и 3D-моделировании. Создаём физические объекты по цифровым чертежам, а также помогаем воплотить ваши идеи в реальность.</p>
                         <p>Выполняем печать:</p>
-                        <ul>
-                            <li>по готовым 3D-моделям;</li>
-                            <li>по вашим чертежам и эскизам с нуля;</li>
-                            <li>по физическим образцам — воссоздание и точное копирование деталей.</li>
+                        <ul >
+                            <li class="text-start">по готовым 3D-моделям;</li>
+                            <li class="text-start">по вашим чертежам и эскизам с нуля;</li>
+                            <li class="text-start">по физическим образцам — воссоздание и точное копирование деталей.</li>
                         </ul>
                         <p>Мы используем высокоточные принтеры и качественные материалы, что позволяет получать надёжные и эстетичные изделия любой сложности.</p>
                         <p>Обращайтесь — вместе мы создадим то, что ещё вчера было лишь идеей!</p>
 
                         <div class="d-flex">
-                            <button class="btn main-btn border mx-auto mt-3 px-4 py-2">Связаться с нами</button>
+                            <a href="https://vk.com/im?media=&sel=810995763" class="btn main-btn border mx-auto mt-3 px-4 py-2">Связаться с нами</a>
                         </div>
                     </div>
-                    <img src="<?ROOT?>src/imgs/collage.jpg" alt="3D печать и моделирование" class="border border-secondary-subtle collage-img-left img-fluid rounded position-absolute z-1 **d-none d-md-block**">
+                    <img src="<?ROOT?>src/imgs/collage.png" alt="3D печать и моделирование" class="border border-secondary-subtle collage-img-left img-fluid rounded position-absolute z-1 **d-none d-md-block**">
                 </div>
                 <div class="text-center about-us-right col-md-6 col-lg-4 mb-4 position-relative z-2">
                     <div class="position-relative z-2 border border-secondary-subtle p-4 bg-white shadow-sm rounded">
@@ -69,8 +74,8 @@ $reviews = R::findAll('avito_reviews');
         <!-- Социальные сети -->
         <section  class="container mb-5">
             <div class="d-flex align-items-center justify-content-center social-icons">
-                <a href="https://vk.com/3dprinter33" target="_blank"><img src="<?ROOT?>src/imgs/vk.png" alt="GeekPrint VK"></a>
-                <a href="https://www.avito.ru/brands/ec8aea67ae5ca40fae709aa9d2e61c68/all?gdlkerfdnwq=101&page_from=from_item_card_icon&iid=7418041963&sellerId=82e5de2636ff05c30924d46394c6060f" target="_blank"><img src="<?ROOT?>src/imgs/avito.png" alt="GeekPrint AVITO"></a>
+                <a href="https://vk.com/3dprinter33" target="_blank"><img src="<?ROOT?>src/imgs/vk.png" alt="GeekPrint33 VK"></a>
+                <a href="https://www.avito.ru/brands/ec8aea67ae5ca40fae709aa9d2e61c68/all?gdlkerfdnwq=101&page_from=from_item_card_icon&iid=7418041963&sellerId=82e5de2636ff05c30924d46394c6060f" target="_blank"><img src="<?ROOT?>src/imgs/avito.png" alt="GeekPrint33 AVITO"></a>
             </div>
         </section>
 

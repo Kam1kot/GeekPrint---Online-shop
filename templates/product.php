@@ -100,19 +100,20 @@ $categoryName = $currentCat ? htmlspecialchars($currentCat->name) : 'Без ка
                             data-price="<?= $productPrice ?>">
                             В корзину
                         </button>
-                        
-                        <button 
-                            class="btn btn-outline-warning p-3" 
-                            title="Редактировать товар"
-                            data-bs-toggle="modal" 
-                            data-bs-target="#editProductModal<?= $productID ?>">
-                            ⚙️
-                        </button>
-                         <form method="post" class="d-inline product-delete-form">
-                            <input type="hidden" name="id" value="<?= $productID ?>">
-                            <input type="hidden" name="cover" value="<?= $productCover ?>">
-                            <button class="btn btn-danger confirm-delete-btn" title="Удалить товар">❌</button>
-                        </form>
+                        <?php if(is_admin()):?>
+                            <button 
+                                class="btn btn-outline-warning p-3" 
+                                title="Редактировать товар"
+                                data-bs-toggle="modal" 
+                                data-bs-target="#editProductModal<?= $productID ?>">
+                                ⚙️
+                            </button>
+                            <form method="post" class="d-inline product-delete-form">
+                                <input type="hidden" name="id" value="<?= $productID ?>">
+                                <input type="hidden" name="cover" value="<?= $productCover ?>">
+                                <button class="btn btn-danger confirm-delete-btn" title="Удалить товар">❌</button>
+                            </form>
+                        <?php endif;?>
                     </div>
                 </div>
             </div>
